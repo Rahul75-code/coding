@@ -1,0 +1,64 @@
+Hi, as you know I am Rahul,
+I am from Bokaro, Jharkhand, and completed my primary, and secondary education from Bokaro itself, and done b.tech from KIST college, in Bhubaneshwar in 2019, In my last year I done an internship, there I got an exposure to developed a slack application using node.js and electron.js, which have multiple funcationalities like system notification, added to the tray, Auto launcher, converted to exe file, installer, SQLite as database, and multiple window pages.
+
+after graduation, I joined TCS as a developer, there I worked for almost 3 years.
+in 2022 I got an opportunity for data engineer role in cognizant and till now I am in cognizant.
+ I have technical knowledge in - SQL, Python, pandas, numpy, pyspark, java,  in AWS I know - s3, lambda, stepfunction, redshift, glue, sns topics.
+
+coming to my work experience:using
+in my 1st project : 
+my key roles was developer, 
+my primary responsibilities - was to build and maintain a service using python, Rest-APIs, and angular as front-end.
+short brief : The main purpose of the service is to maintain the record of each part of the motor vehicle in production factory and this service give them feature to track the, quantity, movement, location and availability of each mechanical parts in the factory: 
+
+in my 2nd project - 
+
+my primary responsibilities - I build the Invoice MicroService- 
+along with that I Successfully modified numerous modules that increased
+ User-friendliness.
+ and along with that I supported in other client requirement , like modify records, and enhancements. 
+
+role - data engineer
+ 1st created data handling pipeline to perform various data validation for clients, which includes extraction of data, performing transformations and doing data validation and then again loading data to cloud server.
+ 
+so, in cognizant,
+as data engineer role in finance and insurance domain
+my primary responsibilities - to build and maintain ETL pipeline,
+regarding the over view of my work - ETL was build on top of AWs infrastructure using s3, lambda, stepfunction, redshift, sns topics, glue
+
+also got a chance to work on data migration projects : where whole data warehouse is moved from Informix to redshift, here we build everything from scratch also we modified business queries for the client which is used during transformations
+
+till this date I build 5-6 ETL pipeline in AWS, and currently i giving production support to ETL. so I am handeling every enhancement and incident regarding that ETL
+
+also got an exposer to 
+
+my key roles was, 
+
+my primary responsibilities, 
+
+overview
+
+after prod release
+
+apart from this roles
+
+in addition to it
+
+in addition to  -- in place of also
+
+I also given support to 
+
+I used to handle, 
+
+currently handling
+
+
+
+
+
+
+
+
+
+
+

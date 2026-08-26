@@ -1,0 +1,24 @@
+Given a string ‘aaaccbbdeaaaccd’, count the number characters in the string. Result for the given string will be ‘a3c2b2e1a3c2d1’.
+
+
+Consider a table named sales with the following structure:
+	CREATE TABLE sales (
+  		sale_id INT PRIMARY KEY,
+		  sale_date DATE,
+		  product_id INT,
+		  quantity INT,
+		  unit_price DECIMAL(10, 2)
+	);
+	
+	Write a query to find the top-selling products in each month of the year, along with the total quantity sold and the total revenue (sales amount) for each product in that month.
+
+
+lst1 = [2, 4, 7, 8, 9]
+#lst2 = [8 9 2 4 7]
+k = 100
+n = len(lst1)
+
+k = k%n
+
+lst2 = lst1[k:]+lst1[0:k]
+print(lst2 )

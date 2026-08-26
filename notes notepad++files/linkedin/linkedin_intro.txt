@@ -1,0 +1,49 @@
+Hi All,
+Currently I'm serving the Notice period in Cognizant and my last working day is 13th june 2025, 
+My job role is Data engineer and total experience is 5 years.
+my skill set is - Python, Pyspark, AWS, SQL
+but as of now I didn't get any offer letter.
+please refer me.
+Thank you
+
+------------------------------------------------------------------------------------------
+
+
+
+------------------------------------------------------------------------------------------
+
+
+Hi All,
+Currently, I'm serving the Notice period at Cognizant, and my last working day is 13th June 2025. 
+My role is a data engineer, and I have 5 years of experience.
+My skill set is - Python, Pyspark, AWS, SQL.
+But as of now, I haven't received any offer letter.
+Please refer me.
+Thank you
+
+Currently, I'm serving the Notice period at Cognizant, and my last working day is 13th June 2025. 
+My role is a data engineer, and I have 5 years of experience.
+My skill set is - Python, Pyspark, AWS, SQL.
+Please refer me.
+Thank you
+
+HI, I'm serving the Notice period at Cognizant, and LWD - 13th June
+My role is a data engineer, and I have 5 years of experience.
+skill set - Python, Pyspark, AWS, SQL, snowflake
+Please refer me
+Thank you
+
+
+
+------------------------------------------------------------------------------------------
+
+
+
+
+My primary responsibility is to build and maintain the ETL 
+pipelines.  
+Here, I'm actively working on creating stage and transformation 
+scripts using Python and PySpark. In addition, I have used AWS 
+services like Lambda, Step Functions, and Glue to execute ETL 
+jobs and generate reports for clients. I have also successfully 
+designed, built, and deployed multiple ETL pipelines.
