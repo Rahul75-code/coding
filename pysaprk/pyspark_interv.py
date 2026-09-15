@@ -5,6 +5,8 @@ Q>> sells table(sell_date, product), find for each date the number of different 
 
 select sell_date, count(*) as num_sold, 
 group_concat(product) as products,
+from numbers import Number
+
 from activities
 group by 1
 order by 1
@@ -12,10 +14,8 @@ order by 1
 ##########################################################################
 	# Persist the DataFrame in memory
 	df.persist()
-	
 	# Perform some operations on the persisted DataFrame
 	df_filter= df.filter(df.id =1)
-	
 	# Unpersist the DataFrame from memory
 	df.unpersist()
 	
@@ -33,7 +33,8 @@ filtered_df = joined_df.filter((joined_df.column_name1 > 10) & (joined_df.column
 # Filter the dataframe based on null checks
 filtered_df = joined_df.filter(joined_df.column_name.isNull())
 
-GroupBys enable you to aggregate and summarize data based on specific columns. PySpark provides a wide range of aggregation functions like sum, count, avg, min, max, etc.
+GroupBys enable you to aggregate and summarize data based on specific columns. PySpark provides a wide 
+range of aggregation functions like sum, count, avg, min, max, etc.
 
 Here’s an example of how to use groupBys in PySpark:)
 
@@ -57,7 +58,6 @@ empDF = spark.createDataFrame(data=emp, schema = empColumns)
 empDF.printSchema()
 empDF.show(truncate=False)
 
-
 dept = [("Finance",10), \
     ("Marketing",20), \
     ("Sales",30), \
@@ -70,30 +70,24 @@ deptDF.show(truncate=False)
 
 empDF.join(deptDF,empDF.emp_dept_id ==  deptDF.dept_id,"inner") \
      .show(truncate=False)
-
 empDF.join(deptDF,empDF.emp_dept_id ==  deptDF.dept_id,"outer") \
     .show(truncate=False)
 empDF.join(deptDF,empDF.emp_dept_id ==  deptDF.dept_id,"full") \
     .show(truncate=False)
 empDF.join(deptDF,empDF.emp_dept_id ==  deptDF.dept_id,"fullouter") \
     .show(truncate=False)
-
 empDF.join(deptDF,empDF.emp_dept_id ==  deptDF.dept_id,"left") \
     .show(truncate=False)
 empDF.join(deptDF,empDF.emp_dept_id ==  deptDF.dept_id,"leftouter") \
    .show(truncate=False)
-
 empDF.join(deptDF,empDF.emp_dept_id ==  deptDF.dept_id,"right") \
    .show(truncate=False)
 empDF.join(deptDF,empDF.emp_dept_id ==  deptDF.dept_id,"rightouter") \
    .show(truncate=False)
-
 empDF.join(deptDF,empDF.emp_dept_id ==  deptDF.dept_id,"leftsemi") \
    .show(truncate=False)
-
 empDF.join(deptDF,empDF.emp_dept_id ==  deptDF.dept_id,"leftanti") \
    .show(truncate=False)
-
 empDF.alias("emp1").join(empDF.alias("emp2"), \
     col("emp1.superior_emp_id") == col("emp2.emp_id"),"inner") \
     .select(col("emp1.emp_id"),col("emp1.name"), \
@@ -117,97 +111,45 @@ from pyspark.sql import functions
 from pyspark.sql import window
 
 spark = sparkSession.builder.master('local').appName('sprk_app').getOrCreate()
-
 data1 = {(), (), (), (), ()}
-
 cols1 = ['sdf','tgv','bhj']
-
 df = spark.createDataFrame(data  = data1, schema = cols1)
-
 win = window.orderBy(col('bhj').desc())
-
 df_with_rank = df.withColumn('rank', rank().over(win)).withColumn('dense_rank', dense_rank().over(win))
-
 df_with_rank.show()
-
 
 for item in range(10):
     if i < 5:
-        'expression'
-        
+        'expression'  
  com_lst = ['expression' for item in range(10) if i < 5]
  
- 
- -------------------------------------------------------------------------------------##
+-------------------------------------------------------------------------------------##
  
  select *,
 		rank() over(order by marks descs) as rnk,
 		dense_rank() over (order by marks desc) as dns_rnk
  from tbl
  
- 
- 
- from pyspark import sparkSesson
- from pyspark.sql import functions
- from pyspark.sql.window import window
- 
- spark = sparkSession.builder.master('local').appName('sparkApp').getOrCreate()
- 
  data1 = {
-	(1, "dsf", 95),(2, "gerg", 97),(3, "rbt", 96),(4, "tyjf", 97),((5, "eafr", 98)
+	(1, "dsf", 95),(2, "gerg", 97),(3, "rbt", 96),(4, "tyjf", 97),(5, "eafr", 98)
  }
- 
  columns = ['id', 'name', 'marks']
- 
  df = spark.createDataFrame(data = data1, schema = columns)
- 
  win = window.orderBy(col('marks').desc())
- 
  df_with_rnk = df.withColumn('rank', rank().over(win)).withColumn('dns_rnk', dense_rank().over(win))
- 
  df_with_rnk.show()  
-  
   
  ------------------------------------------------------------------------------------
 
-
-
 fdf = df1.filter((df1.col1 >5) & (df1.col2 == 'True'))
 
-
 filtered_df = joined_df.filter((joined_df.column_name1 > 10) & (joined_df.column_name2 == 'condition'))
-
-
-
-function Component() {
-useEffect(() => {
-//componentdidMount or componentDid update
-return () => {
-// componentwill Unmount
-};
-}, []);
-}
-
-
-function controllledInput () {
-const [value, setValue
- = React.useSate('');
- return <input value = {value} onchange ={(e) => setValue(e.target.value)} />;
- }
- 
- onChange = {(e) => setValue
- 
- 
- 
  
  s = '3A2B1C0D5A'
  
  o/p = AAABBCAAAAA
- 
- 
  arr = []
- for ch in s:
-     
+ for ch in s:   
  i=0
  while (i < len(s)) :
      arr.append(s[i+1]*int(s[i]))
@@ -233,7 +175,6 @@ const [value, setValue
   (SELECT col2 FROM tbl1 WHERE col2 IS NOT NULL LIMIT 1) AS col2,
   (SELECT col3 FROM tbl1 WHERE col3 IS NOT NULL LIMIT 1) AS col3; 
   
-  
   ------------------------------------------------------------------------------------
   
   create or replace snowpipe pipeName
@@ -241,7 +182,6 @@ url = s3://
 table = tblName
 source provide = s3
 format = csv
-
 
 fruit_data = 
 {
@@ -267,24 +207,16 @@ password
 database
 datawarehouse
 )
-
 cur = con.cursur
-
 cur.execute(insert)
 
-
 select name, quantity from fruit_data;
-
 select sum(quantity) from fruit_data group by name;
-
 select max(quantity) from fruit_data;
-
 select 
 row_number() over( order by name)
 ,*
 from fruit_data;
-
-
 
 ----------------------------------------------------
 Emp
@@ -296,13 +228,9 @@ with salary as (
 row_number() over(order by salary desc) as row_num
 from emp
 )
-
 select * from salary where row_num = 3;
 
-
 -------------------------------------------------------------------------------------------
-
-
 
 Q. Given an array of sorted numbers, find the first pair of numbers adding upto 0.
 for e.g. 
@@ -311,37 +239,23 @@ output -> [-3,3]
 
 inp = [-4,-3,-2,0,1,2,3,10]
 
-
-
-for i in inp
-
-
-
-
-
-
-
-
-mp = []
-for i in inp:
-	for j in mp:
-		if i-j == 0:
-			return [i,j]
-		mp.append(i)
-		
-		
-		
-i = 0
-j = -1
-for i in :
-
-
-
-
-
+def first_pair_sum_zero(arr):
+    left, right = 0, len(arr) - 1
+    
+    while left < right:
+        s = arr[left] + arr[right]
+        
+        if s == 0:
+            return [arr[left], arr[right]]
+        elif s < 0:
+            left += 1
+        else:
+            right -= 1
+    
+    return None  # No pair found
+	
 
 str = 'dhchjedn'
-
 
 ls = list()
 for i in str:
@@ -350,94 +264,54 @@ for i in str:
 	if count(i) < 1:
 		ls.append(i)
 	
-	
-	
-emp = name, id, salary, deprt, manager_id
-
-find employees having salary higher then avg salary of department
-
-with sal as(
-select name, salary , avg(salary) as avg_sal
-from emp group by deprt
-)
-
-
-select name salary from sal 
-where salary > avg_sal
-	
--------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
 
 
 empid, empname, salary, deptname
- 
 1,A,7000,IT
- 
 2,B,6000,IT
- 
 3,C,5000,IT
- 
 4,D,5000,HR
- 
 5,E,1200,HR
- 
 6,F,1999,HR
- 
 7,G,2000,Fin
- 
 8,H,5000,Fin
- 
 9,I,4000,Fin
- 
 10,J,1000,Security
  
 Get the highest salary record from each department
 
-
 with emp1 as ( select *,
 row_number() over(partition by('deptname') order by('salary', desc)) as rownum
  from emp
- 
  )
- 
  select * from emp1 where rownum = 1;
  
  -----------------------------------------------------
  
  win = window.partitionby('deptname').orderby('salary', desc)
- 
  df1 = emp.withColumn('rownum', rowNumber.over(win))
- 
  df2 = df1.filter(df1.rownum = 1)
 
 --------------------------------------------------------------------------
 
 Write a Glue job to read data from S3 bronze layer - csv format 
- 
 Add 1 column to the df
- 
 Write back to staging layer - parquet format
-
 
 --------------------------------------------------------
 
 import boto3
 
-
 spark = sparkseesion.builder.appname('app1').getOrCreate
 
-
 s3 = boto3(s3)
-
 path = s3://bronze
 key = file1
-
 data = s3.read(path+key)
 
-
 df1 = spark.createDataFrame(data)
-
 df_new_col = df1.withcolumn('col1')
-
 
 s3.upload(df_new_col, format = 'parquet')
 
@@ -476,8 +350,6 @@ while i < len(s):
             l = i
     print('new l, new i -',l, i)
 print(ls)
-
- 
  
 ls = ''
 l = 0
@@ -499,19 +371,7 @@ while i < len(s):
             l = i
 print(ls)
 
-
-
 ----------------------------------------------------------------------------------------------------------------
-
-flatten the nested list using python program 
-
-ls = [1,[2,3,[4],5],6]
- 
-
-new_list = [x for x in ls for i in x ]
-
-[item for sublist in lst for item in (flatten(sublist) if isinstance(sublist, list) else [sublist])]
-
 
 Random string - "jjkkkaauanjkeeeeeenj" -  
 write a python program to get the character and its occurrence,
@@ -519,10 +379,6 @@ that is repeated most number of times.
 
 op = e,6
 s - "jjkkkaauanjkeeeeeenj"
-
-
-
-for i in s:
 
 input - 
 employee
@@ -539,117 +395,71 @@ from employee )
 select * from sal 
 where dns_rnk = 3
 
-
-
-
-
 win = windows().partition('dept').orderby(salary, desc)
 df1 = emp_df.with_column('dense_rank',dense_rank().over(win))
 df2 = df1.filter(df1['dense_rank'] = 3)
-
-
 
 from pyspark.sql import Window
 from pyspark.sql.functions import dense_rank, desc
 
 # Define window spec
 win = Window.partitionBy('dept').orderBy(desc('salary'))
-
 # Add dense_rank column
 df1 = emp_df.withColumn('dense_rank', dense_rank().over(win))
-
 # Filter for employees with rank 3
 df2 = df1.filter(df1['dense_rank'] == 3)
 
 
-
-
 emp_id, emp_name, dept, salary
- 
 A	B
-
 1	1
-
 1	1
-
 1	2
-
 1	3
-
 1	1
 
 Number of rows in output for inner, left , right and full join
 
-
-
 inner - 15
-
 left - 15
-
 right - 17
-
 full join - 5X5
 
 ----------------------------------------------------------------------------------------------------------------
 
-
 s = [2,3,4,5,6,1]
- 
 for i in range(len(s)):
-
     for j in range(len(s)):
-
         if s[i] < s[j]:
-
             s[i], s[j] = s[j], s[i]
-
 print(s)
- 
 n = 4
- 
 for i in s:
-
     if i == n:
-
         print(n)
-
         break
  
 mx_n = 0
- 
 for i in range(len(s)):
-
     if mx_n < s[i]:
-
         mx_n = s[i]
-
 print(mx_n)
- 
 with s as(
-
 selct *,
-
 dense_rank() over(partition by dept order by sal desc) as rnk
-
 from emp
-
 )
-
 select id, name, sal, dept
-
 from s where rnk = 2
- 
 
 ----------------------------------------------------------------------------------------------------------------
-
- 
 
 Customers
 Customer 		ID	Name	Age	City
 1	John Smith	25	New York
 2	Jane Doe	30	Chicago
 3	Bob Brown	35	Los Angeles
-4Alice Johnson	20	New York
+4 Alice Johnson	20	New York
 5	Mike Davis	40	Chicago
 6	Emily Taylor	 Los Angeles
 7	David Lee	28	New York
@@ -684,18 +494,12 @@ Customers.join(Orders, on ='Customer ID' how ='inner join' )
 
 df.groupbykey()
 
-
 df.groupby()
-
 df = df1.join(df2, df1.col = df2.col, 'left')
-
 spark = sparkSession.builder.appname('app1').getOrCreate()
 
-
 tbl - emp
-
 col - id , name, dept, sal
-
 2nd higest sal
 
 
@@ -711,21 +515,13 @@ from s where rnk = 2
 
 
 win = window.partitionBy('dept').orderBy(desc('sal'))
-
 df = emp.withColumn('dense_rank', dense_rank().over(win))
-
 df2 = df1.filter(df1['dense_rank'] == 2)
-
-
-
 
 -----------------------------------------------------------------------------
 
-
-
 with f.open('file1','r') as data1
 data.isin('rahul')
-
 
 search the element in file using pyspark
 
@@ -747,22 +543,14 @@ from emp
  
  
 read()
-
 group_by()
-
 re-partition()
-
 count()
-
- 
  
 apply, map and applymap
- 
 piping in pyspark
- 
 dataware house, datalake, delta lake
  
-
  ------------------------------------------------------------------
  
  CITY	,YEAR,	TEMP
@@ -791,15 +579,9 @@ from temp
 select * 
 from t where row_nm = 1;
 
-
-
 win = window.partitionby('YEAR').orderby(desc(TEMP))
-
 df1 = temp.withColumn('row_nm', rownumber().over(win))
-
 df2 = df1.filter(df1['row_nm'] == 1)
-
-
 
 s = 'vduhdbdd'
 
@@ -820,8 +602,6 @@ print(mx_key)
 
 ---------------------------------------------------------------------------------
 
-
-
 Questions: Write a pyspark code to get names of only passed students. Passing mark is 40.
 CSV : student_marks
 Columns:
@@ -838,18 +618,12 @@ Prasad, Biologgy, 78
 Expected Output:
 Prasad
 
-
 std_df= spark.read.csv('student_marks')
-
 pass_df = std_df.filter(std_df['marks'] >= 40)
-
 pass_df.filter(pass_df[''])
 
 
 ---------------------------------------
-
-
-
 
 select Name
 from student_marks
@@ -858,8 +632,6 @@ having count(Name) = 3 and marks >= 40;
 
 
 -----------------------------------------------------------------
-
-
 
 Write Python code to find the longest consecutive sequence of numbers.
 i/p: list1 = [1,4,2,6,3,4,5, 8,6,7,8,9]
@@ -877,9 +649,6 @@ while i < len(list1):
          
     ls = 
     
-    
-    
-    
 map_n = {}
 for i in list1:
     if i in map_n:
@@ -892,11 +661,7 @@ mx_val = max(list(map_n.values()))
 idx_val = list(map_n.values()).index(mx_val)
 mx_key = list(map_n.keys())[idx_val]
  
-
-
 ----------------------------------------------------------
-
-
 
 fls = [1, 2, [3, 4], 5, 6]
 
@@ -971,55 +736,5 @@ rnk_df = emp_df.withColumn('rank', dense_rank().over(win))
 df = rnk_df.filter(rnk_df['rank'] == 3)
 
 df.show()
-
----------------------------------------------------------------------------------
-
- student_df=
-roll_no, subject, marks
-	10		maths	60
-	10		english	70
-	10		science	80
-	10		hindi	90
-	20				
-	20		english	60
-	20		science	70
-	20		hindi	80
-		
-output - roll_no, maths_marks, english_marks, science_marks, hindi_marks
-		10		60				70				80			90
-		20						60				70			80
-		
-write a sql query for above output
-------------------------------------
-
-from pyspark.sql import SparkSession
-from pyspark.sql.functions import col
-
-spark = SparkSession.builder.getOrCreate()
-
-# Sample data
-data = [
-    (10, "maths", 60),
-    (10, "english", 70),
-    (10, "science", 80),
-    (10, "hindi", 90),
-    (20, "english", 60),
-    (20, "science", 70),
-    (20, "hindi", 80)
-]
-
-columns = ["roll_no", "subject", "marks"]
-
-student_df = spark.createDataFrame(data, columns)
-
-# Pivot the table
-pivot_df = (
-    student_df
-    .groupBy("roll_no")
-    .pivot("subject", ["maths", "english", "science", "hindi"])
-    .max("marks")
-)
-
-pivot_df.show()
 
 ---------------------------------------------------------------------------------

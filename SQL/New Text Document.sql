@@ -9,8 +9,6 @@ ID, name, dept_id, Sal	rn
 6	ghi		3		12 
 7	dhr		2		5
 
-
-
 with row_sal(
 select ID, name, dept_id, Sal,
 rank() over(partition by dept_id, order by Sal asc) as rn
