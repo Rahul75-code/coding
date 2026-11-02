@@ -518,8 +518,6 @@ ORDER BY month, country;
 -- if date is string and need to format:
 TO_CHAR(TO_DATE(trans_date, 'YYYY-MM-DD HH24:MI:SS'), 'YYYY-MM') AS month,
 
----------------------------------------------------------------------------------------
-
 
 ---------------------------------------------------------------------------------------
 
