@@ -1,4 +1,47 @@
 
+-- SCD 2
+update tgt as t
+set t.flag = 'n', t.end_date = current_date()
+from src as s 
+where s.id = t.id and t.flag = 'y' and
+(s.name <> t.name or s.city <> t.city);
+
+insert into tgt(,,,,,)
+select s.name,,,,,current_date(), null, 'y'
+from stg as s 
+left join tgt as t 
+on t.id = s.id and t.flag ='y'
+where t.id is null
+or (s.name <> t.name or s.city <> t.city);
+
+-------------------------------------------------------------------------------------------------------
+
+MERGE INTO dim_customer AS tgt
+USING stg_customer AS src
+ON tgt.customer_id = src.customer_id
+AND tgt.is_current = TRUE
+WHEN MATCHED AND (
+    tgt.name  <> src.name
+ OR tgt.email <> src.email
+ OR tgt.city  <> src.city
+)
+THEN
+  -- Expire old version
+  UPDATE SET
+    tgt.is_current        = FALSE,
+    tgt.effective_end_at  = CURRENT_TIMESTAMP
+WHEN NOT MATCHED THEN
+  -- Insert new version
+  INSERT (
+    customer_id, name, email, city, effective_start_at, effective_end_at, is_current, version
+  )
+  VALUES (
+    src.customer_id, src.name, src.email, src.city, CURRENT_TIMESTAMP, NULL, TRUE,
+    COALESCE(
+      (SELECT MAX(version)+1 FROM dim_customer d WHERE d.customer_id = src.customer_id),1)
+  );
+
+----------------------------------------------------------------------------------------------------------
 --SCD Type 1
 -- SQL implementation of SCD Type 1
 -- 🔹 Step-by-Step SQL Example
@@ -9,7 +52,7 @@ SET
     Name = stg.Name,
     Address = stg.Address
 FROM stg_customer stg
-WHERE dim.Customer_ID = stg.Customer_ID;
+WHERE dim.Customer_ID = stg.Customer_ID; 
 
 INSERT INTO dim (Customer_ID, Name, Address)
 SELECT stg.Customer_ID, stg.Name, stg.Address
@@ -32,7 +75,7 @@ WHERE tgt.customer_id = src.customer_id
     tgt.name <> src.name OR
     tgt.address <> src.address
   ); 
----------------------------
+
 -- Step 2: Insert new and updated records
 INSERT INTO target_table (customer_id, name, address, effective_date, end_date, Current_Flag)
 SELECT src.customer_id, src.name, src.address, CURRENT_DATE, DATE '9999-12-31', 'Y'
@@ -47,19 +90,6 @@ WHERE tgt.customer_id IS NULL
 
 -----------------------------------------------------------------------------------------------
 
-update tgt as t
-set t.flag = 'n', t.end_date = current_date()
-from src as s 
-where s.id = t.id and t.flag = 'y' and
-(s.name <> t.name or s.city <> t.city);
-
-insert into tgt(,,,,,)
-select s.name,,,,,current_date(), null, 'y'
-from stg as s 
-left join tgt as t 
-on t.id = s.id and t.flag ='y'
-where t.id is null
-or (s.name <> t.name or s.city <> t.city);
 -----------------------------------------------------------------------------------------------
 
 MERGE INTO dim_customer AS tgt
@@ -93,32 +123,6 @@ WHEN NOT MATCHED THEN
     ),
     src.change_hash
 
-------------------------------------------------------
-
-MERGE INTO dim_customer AS tgt
-USING stg_customer AS src
-ON tgt.customer_id = src.customer_id
-AND tgt.is_current = TRUE
-WHEN MATCHED AND (
-    tgt.name  <> src.name
- OR tgt.email <> src.email
- OR tgt.city  <> src.city
-)
-THEN
-  -- Expire old version
-  UPDATE SET
-    tgt.is_current        = FALSE,
-    tgt.effective_end_at  = CURRENT_TIMESTAMP
-WHEN NOT MATCHED THEN
-  -- Insert new version
-  INSERT (
-    customer_id, name, email, city, effective_start_at, effective_end_at, is_current, version
-  )
-  VALUES (
-    src.customer_id, src.name, src.email, src.city, CURRENT_TIMESTAMP, NULL, TRUE,
-    COALESCE(
-      (SELECT MAX(version)+1 FROM dim_customer d WHERE d.customer_id = src.customer_id),1)
-  );
 
 --------------------------------------------------------------------------
 -- 3.1 Prepare staging with hash for redshift
