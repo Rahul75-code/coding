@@ -55,7 +55,6 @@ FROM department d
 LEFT JOIN employee e ON d.dept_id = e.dept_id
 GROUP BY d.dept_id, d.dept_name;
 
-
 -----------------------------------------------------------------------
 
 -- 1.consider the Employee table below.
@@ -96,7 +95,7 @@ WITH tbl2 AS (
 SELECT Manager_Id, Manager, AVG(Salary) AS Average_Salary_Under_Manager 
 FROM tbl2
 GROUP BY Manager_Id, Manager;
-``
+
 
 -----------------------------------------------------------------------
 
@@ -177,6 +176,28 @@ NULL	NULL
 NULL	NULL
 3		3
 
+fullouter join :
+T1     T2
+----   ----
+1      1
+1      1
+2      2
+2      2
+2      2
+2      2
+3      3
+NULL   NULL   -- Tab1 unmatched
+NULL   NULL   -- Tab1 unmatched
+NULL   NULL   -- Tab2 unmatched
+NULL   NULL   -- Tab2 unmatched
+
+(2×1) for value 1 = 2
+(2×2) for value 2 = 4
+(1×1) for value 3 = 1
+2 unmatched NULLs from Tab1 = 2
+2 unmatched NULLs from Tab2 = 2
+--------------------------------
+Total = 11 rows
 
 ---------------------------------------------------------
 
@@ -206,15 +227,15 @@ WHERE DAY(date_column) = 30  AND MONTH(date_column) = 10;
 --This will return all rows where the date is October 30th (regardless of year).
 
 --✅ Generic SQL (MySQL, SQL Server)
-SQLSELECT *FROM your_table
+SELECT *FROM your_table
 WHERE DAY(date_column) = 30  AND MONTH(date_column) = 10  AND YEAR(date_column) = 2025;
 
 --✅ PostgreSQL
-SQLSELECT *FROM your_table
+SELECT * FROM your_table
 WHERE EXTRACT(DAY FROM date_column) = 30  AND EXTRACT(MONTH FROM date_column) = 10  AND EXTRACT(YEAR FROM date_column) = 2025;
 
 --✅ Oracle SQL
-SQLSELECT *FROM your_table
+SELECT *FROM your_table
 WHERE TO_CHAR(date_column, 'DD') = '30'  AND TO_CHAR(date_column, 'MM') = '10'  AND TO_CHAR(date_column, 'YYYY') = '2025';
 
 -- ✅ SQL Query (Works in PostgreSQL, SQL Server, etc.)
@@ -227,7 +248,7 @@ DATE_TRUNC('month', order_date) AS order_month;
 ----------------------------------------------------------------------------
 
 ✅ Using BETWEEN
-SELECT *FROM your_table
+SELECT * FROM your_table
 WHERE date_column BETWEEN '2025-10-01' AND '2025-10-30';
 
 -- This includes both start and end dates.
@@ -240,11 +261,10 @@ WHERE date_column >= '2025-10-01'  AND date_column <= '2025-10-30';
 
 -- Same result as BETWEEN, but gives you more flexibility if you want to use exclusive bounds (e.g., < instead of <=).
 
-
 ----------------------------------------------------------------------------
 
 SELECT CURRENT_DATE - INTERVAL 40 DAY AS past_date;
- -- employees who joined in the last 30 days from the employee table
+-- employees who joined in the last 30 days from the employee table
 SELECT emp_id, emp_name, join_date
 FROM employee
 WHERE join_date >= CURRENT_DATE - INTERVAL 30 DAY;
@@ -313,7 +333,6 @@ SELECT customer_id, order_id, order_date, amount
 FROM ranked_orders
 WHERE rn = 1;
 
-
 ----------------------------------------------------------------------------
 
 -- SQL implementation of SCD Type 1
@@ -327,14 +346,12 @@ SET
 FROM stg_customer stg
 WHERE dim_customer.Customer_ID = stg.Customer_ID;
 
-
 INSERT INTO dim_customer (Customer_ID, Name, Address)
 SELECT stg.Customer_ID, stg.Name, stg.Address
 FROM stg_customer stg
 LEFT JOIN dim_customer dim
     ON stg.Customer_ID = dim.Customer_ID
 WHERE dim.Customer_ID IS NULL;
-
 
 -------------------------------------------------------
 
@@ -534,7 +551,7 @@ SELECT * FROM Subordinates;
 
 -----------------------------------------------
 
--- to include manger name
+-- to include manager name
 WITH RECURSIVE Subordinates AS (
     -- Anchor: direct subordinates of the given manager
     SELECT 
@@ -578,22 +595,19 @@ WITH RECURSIVE ManagementHierarchy AS (
     INNER JOIN ManagementHierarchy MH ON E.EmployeeID = MH.ManagerID
 )
 SELECT * FROM ManagementHierarchy;
-``
 
 
 
 ---------------------------------------------------------------------------------------------------------------------
-
 -------------------------------------------------------------------------------------------------------
 
-
 Employee table
-Emp_No	Emp_Name	Salary	Location	Dept_No
-101		Graham		10345	New York	40
-102		Mike		20436	Toranto		30
-103		Dean		15730	Mexico		60
-104		John		10000	New York	40
-105		Sara		25000	New York	40
+Emp_No	Emp_Name	Salary	  Location	Dept_No
+101		Graham		10345	      New York	40
+102		Mike		  20436	      Toranto		30
+103		Dean		  15730	      Mexico		60
+104		John		  10000	      New York	40
+105		Sara		  25000	      New York	40
  
  
 Department Table:
@@ -688,9 +702,9 @@ ORDER BY month;
 SELECT DATE_FORMAT(order_date, '%Y-%m-01') AS month
 
 --✅ Databases That Support DATE_TRUNC()
-Database		Support				notes
-PostgreSQL		✅Yes				ative support
-Snowflake		✅Yes				fully supported
+Database		  Support				    notes
+PostgreSQL		  ✅Yes				ative support
+Snowflake		    ✅Yes				fully supported
 Amazon Redshift	✅Yes				same syntax as PostgreSQL
 MySQLUse		DATE_FORMAT() or 
 				EXTRACT()			DATE_FORMAT(order_date, '%Y-%m-01')

@@ -1,14 +1,14 @@
 
 Q>> find top salary from each department ?
 employee
-ID, name, dept_id, Sal	rn
-1	abc		1		10	
-2	bcd		1		11	
-3	xyz		1		9	
-4	buf		2		20
-5	yui		2		5	
-6	ghi		3		12
-7	dhr		2		5
+ID, name, dept_id, Sal rn
+1	  abc		  1		    10	
+2	  bcd		  1		    11	
+3	  xyz		  1		    9	
+4	  buf		  2		    20
+5	  yui		  2		    5	
+6	  ghi		  3		    12
+7	  dhr		  2		    5
 
 with row_sal(
 select ID, name, dept_id, Sal,
@@ -16,18 +16,18 @@ rank() over(partition by dept_id, order by Sal desc) as rn
 from employee
 );
 
-select* 
+select * 
 from row_sal
 where rn = 1;
 
 ------------------------------------------------------------------------
 Employee table
 Emp_No	Emp_Name	Salary	Location	Dept_No
-101		Graham		10345	New York	40
-102		Mike		20436	Toranto		30
-103		Dean		15730	Mexico		60
-104		John		10000	New York	40
-105		Sara		25000	New York	40
+101		Graham		10345	    New York	40
+102		Mike		20436	      Toranto		30
+103		Dean		15730	      Mexico		60
+104		John		10000	      New York	40
+105		Sara		25000	      New York	40
 
 
 Department Table:
@@ -80,7 +80,7 @@ LEFT JOIN leave_in_feb l
   ON h.emp_id = l.emp_id
 WHERE l.emp_id IS NULL;
 
-----or-----
+----or-------------------------
 
 WITH d AS (
     SELECT e.emp_id, e.name, a.leave_id
@@ -98,7 +98,7 @@ WHERE NOT (
     AND l.end_date >= DATE '2025-02-01'
 );
 
-------------------------------------------------------------------------
+----------------------------------------------------
 -- top 5th salary from employee tbl
 
 with emp_tbl as (

@@ -209,11 +209,11 @@ having cnt >= 2
 EMP_ID DEPT_NBR 	SAL
 101     50    	  2000
 102     50       	2200
-103     50 			  2400
-104     60 			  3000
-105     60 			  2000
-106     70 			  1000
-107     70 			  2000
+103     50 			2400
+104     60 			3000
+105     60 			2000
+106     70 			1000
+107     70 			2000
 
 -- Step 1: Define the CTE to calculate average salary per department
 WITH DeptAvg AS (
@@ -304,6 +304,14 @@ SELECT emp_id, emp_name,  EXTRACT(YEAR FROM expense_date) AS year_expense,
     FROM expense
     GROUP BY emp_id, emp_name,  EXTRACT(YEAR FROM expense_date) AS year_expense
 
+--or-----
+SELECT
+    emp_id, emp_name, expense_date, expense_amt,
+    SUM(expense_amt) OVER (
+        PARTITION BY emp_id, YEAR(expense_date)
+    ) AS yearly_total_expense
+FROM expense;
+
 -- last expense each year for each emp
 SELECT emp_id,
        EXTRACT(YEAR FROM expense_date) AS years,
@@ -361,8 +369,8 @@ ORDER BY TeamA, TeamB;
 
 ------------------------------------------------------------------------
 
-sales(region, amount, date). 
-Write a query to find the second highest sale per region for the last 30 days.
+-- sales(region, amount, date). 
+-- Write a query to find the second highest sale per region for the last 30 days.
 
 WITH ranked_sales AS (
     SELECT region,
@@ -398,16 +406,13 @@ Manager_Id     Manager   Average_Salary_Under_Manager
 
 -- answer
 SELECT
-    m.Emp_Id      AS Manager_Id,
-    m.Emp_name    AS Manager,
+    m.Emp_Id      AS Manager_Id, m.Emp_name    AS Manager,
     AVG(e.Salary) AS Average_Salary_Under_Manager
 FROM Employee AS e          -- e = employee (direct report)
 JOIN Employee AS m          -- m = manager
   ON e.Manager_Id = m.Emp_Id
-GROUP BY 
-    m.Emp_Id, m.Emp_name
-ORDER BY 
-    m.Emp_Id;
+GROUP BY m.Emp_Id, m.Emp_name
+ORDER BY m.Emp_Id;
 
 or
 
@@ -530,10 +535,7 @@ Delivery id, order id, shipment id, delivery date
 Find all orders shipped after 15th May 2025 and not yet delivered to the customer
 ---------------
 WITH os AS (
-    SELECT o.order_id, 
-           o.order_date, 
-           s.shipment_id, 
-           s.shipment_date
+    SELECT o.order_id, o.order_date, s.shipment_id, s.shipment_date
     FROM orders o
     JOIN shipment s
       ON o.order_id = s.order_id

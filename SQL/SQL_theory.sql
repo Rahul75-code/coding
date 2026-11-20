@@ -249,3 +249,51 @@ df = pd.read_sql_query(query, conn)
 
 conn.close()
 print(df.head())
+
+What is a Deadlock?
+
+Answer: A deadlock occurs when two or more transactions are waiting for resources locked by each other.
+Example:
+Transaction A locks Table X and waits for Table Y.
+Transaction B locks Table Y and waits for Table X.
+
+
+What is Query Optimization?
+
+Answer: The process of improving SQL performance by:
+Creating appropriate indexes
+Avoiding unnecessary SELECT *
+Reducing joins
+Proper filtering
+Analyzing execution plans
+Partitioning large tables
+
+Semi Join
+
+A Semi Join returns rows from the left table when a match exists in the right table.
+
+SELECT *
+FROM Employees e
+WHERE EXISTS (
+    SELECT 1
+    FROM Orders o
+    WHERE o.Emp_ID = e.Emp_ID
+);
+
+Anti Join
+
+An Anti Join returns rows from the left table when NO match exists in the right table.
+
+SELECT *
+FROM Employees e
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM Orders o
+    WHERE o.Emp_ID = e.Emp_ID
+);
+--or--
+SELECT e.*
+FROM Employees e
+LEFT JOIN Orders o
+    ON e.Emp_ID = o.Emp_ID
+WHERE o.Emp_ID IS NULL;
